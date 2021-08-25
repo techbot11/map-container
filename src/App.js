@@ -1,6 +1,6 @@
 import "./App.css";
 import { Grid, makeStyles, Paper } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Marker, Polyline } from "react-leaflet";
 import MapView from "./components/Map";
 import * as L from "leaflet";
@@ -40,19 +40,30 @@ const myIcon = L.icon({
 function App(props) {
   const classes = useStyles();
   const [view, setView] = useState(1);
-  const bounds = [
+  const [bounds, setbounds] = useState([
     [21.2271104, 72.8530944],
     [21.5476587, 72.7868678],
     [21.0987858, 72.1067898],
     [21.4587385, 72.9788708],
-  ];
-  const center = [51.505, -0.09];
+  ]);
 
-  const polyline = [
-    [51.505, -0.09],
-    [51.51, -0.1],
-    [51.51, -0.12],
-  ];
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setbounds(bounds.map(item => {
+        const no1 = item[0] + parseFloat(Math.random())
+        const no2 = item[1] + parseFloat(Math.random())
+        console.log(no1)
+        return [
+          no1,
+          no2
+        ]
+      }))
+    }, 3000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
     <div className="App">
       <Grid container spacing={1}>

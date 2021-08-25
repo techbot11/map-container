@@ -1,6 +1,6 @@
 const GOOGLE_MAP_ACTIVE = false,
   MAP_KEY = "",
-  ATTRIBUTE = "developed by Ankur";
+  ATTRIBUTE = "";
 const googleMapConfig = Object.freeze({
   isGoogleMapActive: GOOGLE_MAP_ACTIVE,
   apiKey: MAP_KEY,
